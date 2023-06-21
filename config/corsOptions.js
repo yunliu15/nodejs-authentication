@@ -1,11 +1,7 @@
-const whitelist = [
-    'https://www.yoursite.com',
-    'http://127.0.0.1:5500', 
-    'http://localhost:3500'
-] //specify the domains that can access the server
+const allowedOrigins = require('./allowedOrigins'); //specify the domains that can access the server
 const corsOptions = {
     origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin /** || !origin needs to be removed after development finished */) {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin /** || !origin needs to be removed after development finished */) {
             callback(null, true)
         } else {
             callback(new Error('Not allowed by CORS'));
